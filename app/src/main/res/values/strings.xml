@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">color-identifier</string>
+    <string name="chooser_button_text">Choose An Image From Gallery!</string>
+</resources>
