@@ -10,10 +10,15 @@
     <ImageView
         android:id="@+id/img_view"
         android:layout_width="match_parent"
-        android:layout_height="502dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
+        android:layout_height="450dp"
+        android:layout_marginTop="10dp"
         android:contentDescription="PicFromGallery" />
+
+    <ImageView
+        android:id="@+id/img_color_shower"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:contentDescription="Show dominant color" />
 
     <Button
         android:id="@+id/chooser_button"
