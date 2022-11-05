@@ -1,9 +1,7 @@
 package com.abraxel.color_identifier
 
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.Color
+import android.graphics.*
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Build
@@ -24,6 +22,7 @@ import kotlin.math.floor
 class MainActivity : AppCompatActivity() {
 
     lateinit var imageView: ImageView
+    lateinit var dominantColorImgView: ImageView
     lateinit var button: Button
     private val pickImage = 100
     var imageUri: Uri? = null
@@ -33,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         imageView = findViewById(R.id.img_view)
+        dominantColorImgView = findViewById(R.id.img_color_shower)
         button = findViewById(R.id.chooser_button)
 
         button.setOnClickListener{
@@ -54,12 +54,23 @@ class MainActivity : AppCompatActivity() {
 
             val dominantColor = getDominantColor(bitmap)
             val hexColor = String.format("#%06X", 0xFFFFFF and dominantColor)
-
+            val dominantImageView = drawRectForColor(dominantColor)
+            dominantColorImgView.setImageBitmap(dominantImageView)
 
 
 
         }
 
+    }
+
+    private fun drawRectForColor(color : Int): Bitmap {
+        val conf = Bitmap.Config.ARGB_8888
+        val bmp = Bitmap.createBitmap(400,50,conf)
+        val canvas = Canvas(bmp)
+        val paint = Paint()
+        paint.color = color
+        canvas.drawColor(color)
+        return bmp
     }
 
     private fun getDominantColor(bitmap: Bitmap?): Int {
